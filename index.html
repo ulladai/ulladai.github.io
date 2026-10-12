@@ -4,142 +4,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FUCK Uhhh.... 😂</title>
+<title>A Special Surprise 🎁</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: radial-gradient(circle at top, #32104d, #090611 65%);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  color: white;
-  text-align: center;
-  background: radial-gradient(circle, #591515, #100000 75%);
+  overflow-x: hidden;
+  padding: 20px;
 }
 
 .card {
-  width: 92%;
-  max-width: 500px;
-  padding: 25px 15px;
-  border: 2px solid #ff3030;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  padding: 35px 22px;
+  border: 1px solid #c34bff;
   border-radius: 25px;
-  background: #200909;
-  box-shadow: 0 0 35px #ff1010aa;
-  animation: appear .7s ease-out;
+  background: #130d20eF;
+  box-shadow: 0 0 35px #a020f044;
+  animation: appear 1s ease;
 }
 
-.finger {
-  font-size: clamp(120px, 35vw, 210px);
-  line-height: 1.2;
-  animation: bounce 1.2s infinite alternate;
-  filter: drop-shadow(0 0 15px #ff3030);
+.gift {
+  font-size: 85px;
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
 }
 
 h1 {
-  margin: 10px 0;
-  font-size: clamp(38px, 10vw, 65px);
-  color: #ff3333;
-  font-weight: 1000;
-  text-shadow: 3px 3px #650000;
+  font-size: clamp(30px, 8vw, 44px);
+  margin: 18px 0;
+}
+
+.pink {
+  color: #ff64d8;
+  text-shadow: 0 0 15px #ff28bb77;
 }
 
 p {
-  font-size: 19px;
-  line-height: 1.5;
+  color: #ded6e9;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.note {
+  padding: 15px 10px;
+  border-radius: 14px;
+  background: #ffffff0b;
+  border: 1px solid #ffffff12;
+  margin: 25px 0;
 }
 
 button {
-  padding: 15px 25px;
+  width: 100%;
+  max-width: 310px;
+  padding: 17px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
   border: 0;
   border-radius: 40px;
-  color: white;
-  background: #ed2020;
-  font-size: 19px;
-  font-weight: bold;
   cursor: pointer;
+  background: linear-gradient(100deg, #ff3158, #a52cff);
+  box-shadow: 0 0 25px #e32aff55;
+  transition: transform .2s;
 }
 
 button:hover {
-  background: #ff5555;
   transform: scale(1.05);
 }
 
-#extra {
+.hint {
+  color: #ff75d8;
+  font-size: 14px;
+  margin-top: 22px;
+}
+
+#surprise {
   display: none;
-  font-size: 27px;
-  color: #ffe66d;
-  font-weight: bold;
-  margin-top: 18px;
 }
 
-.particle {
+.finger {
+  font-size: clamp(145px, 42vw, 220px);
+  line-height: 1.15;
+  margin: 10px 0;
+  animation: slam .65s cubic-bezier(.2,1.7,.5,1);
+  filter: drop-shadow(0 0 22px #ff1744);
+}
+
+.roast {
+  color: #ff304c;
+  font-size: clamp(36px, 10vw, 55px);
+  text-shadow: 0 0 20px #ff002f77;
+  font-weight: 1000;
+  animation: shake .5s ease-in-out;
+}
+
+.small {
+  font-size: 15px;
+  color: #cbbbd8;
+}
+
+#again {
+  margin-top: 15px;
+  background: linear-gradient(100deg, #8e21dd, #f32672);
+}
+
+.confetti {
   position: fixed;
-  top: -40px;
-  font-size: 30px;
+  top: -35px;
+  z-index: 5;
   pointer-events: none;
-  animation: fall linear forwards;
+  animation: fall 3s linear forwards;
 }
 
-@keyframes bounce {
-  from { transform: rotate(-8deg) scale(.95); }
-  to { transform: rotate(8deg) scale(1.08); }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: scale(.7); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slam {
+  from { transform: scale(0) rotate(-25deg); }
+  to { transform: scale(1) rotate(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
 }
 
 @keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(500deg);
-    opacity: 0;
-  }
+  to { transform: translateY(110vh) rotate(600deg); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
-<div class="card">
-  <div class="finger">🖕</div>
+<main class="card">
 
-  <h1>FUCK UFF!</h1>
+  <section id="welcome">
+    <div class="gift">🎁</div>
 
-  <p>OI HERO! 😂 K SOCHERA LINK KHOLIS?</p>
+    <h1>HEY YOU! <span class="pink">😉</span></h1>
 
-  <button onclick="prank()">THICHA TA! 😈</button>
+    <p>I have something <span class="pink">special</span> for you...</p>
 
-  <div id="extra">
-    HAHAHA! U GOT ROASTED! 🤣
-    <div>🖕 🖕 🖕</div>
-    <p>JUST A PRANK, BRO! 🔥</p>
-  </div>
-</div>
+    <div class="note">
+      ✨ A little surprise is waiting for you! ✨
+    </div>
+
+    <button onclick="reveal()">
+      CLICK HERE 👀 →
+    </button>
+
+    <div class="hint">Go on... click it! 💜</div>
+  </section>
+
+  <section id="surprise">
+    <p class="pink">SURPRISE REVEALED! 🎉</p>
+
+    <div class="finger">🖕</div>
+
+    <div class="roast">FUCK Uhhh Santoshi madarchood....😂</div>
+
+    <p>HAHAHA! YOU REALLY CLICKED IT! 🤣</p>
+
+    <div class="note">
+      Congratulations! 🎖️<br>
+      You just got officially PRANKED!
+    </div>
+
+    <p class="small">Relax bro, it's just a joke. ❤️</p>
+
+    <button id="again" onclick="resetPrank()">
+      SEE THE SURPRISE AGAIN 😈
+    </button>
+  </section>
+
+</main>
 
 <script>
-function prank() {
-  document.getElementById("extra").style.display = "block";
+function reveal() {
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("surprise").style.display = "block";
 
-  for (let i = 0; i < 35; i++) {
+  for (let i = 0; i < 45; i++) {
     const item = document.createElement("div");
-    item.className = "particle";
-    item.textContent = ["🖕", "😂", "🔥", "💀"][
-      Math.floor(Math.random() * 4)
+    item.className = "confetti";
+    item.textContent = ["😂", "💜", "✨", "🤣", "🎉"][
+      Math.floor(Math.random() * 5)
     ];
+
     item.style.left = Math.random() * 100 + "vw";
     item.style.animationDuration = (2 + Math.random() * 3) + "s";
-    document.body.appendChild(item);
+    item.style.fontSize = (18 + Math.random() * 20) + "px";
 
+    document.body.appendChild(item);
     setTimeout(() => item.remove(), 5000);
   }
+}
+
+function resetPrank() {
+  document.getElementById("surprise").style.display = "none";
+  document.getElementById("welcome").style.display = "block";
 }
 </script>
 </body>
 </html>
+
