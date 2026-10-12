@@ -2,88 +2,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Funny Prank 😂</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FUCK Uhhh.... 😂</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      color: white;
-      background: linear-gradient(135deg, #17172d, #7628a8);
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    .card {
-      width: 85%;
-      max-width: 400px;
-      padding: 30px 20px;
-      border-radius: 25px;
-      background: rgba(255,255,255,0.12);
-      box-shadow: 0 10px 35px #0005;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  background: radial-gradient(circle, #591515, #100000 75%);
+}
 
-    .emoji {
-      font-size: 75px;
-    }
+.card {
+  width: 92%;
+  max-width: 500px;
+  padding: 25px 15px;
+  border: 2px solid #ff3030;
+  border-radius: 25px;
+  background: #200909;
+  box-shadow: 0 0 35px #ff1010aa;
+  animation: appear .7s ease-out;
+}
 
-    h1 {
-      color: #ffe66d;
-    }
+.finger {
+  font-size: clamp(120px, 35vw, 210px);
+  line-height: 1.2;
+  animation: bounce 1.2s infinite alternate;
+  filter: drop-shadow(0 0 15px #ff3030);
+}
 
-    p {
-      font-size: 18px;
-      line-height: 1.5;
-    }
+h1 {
+  margin: 10px 0;
+  font-size: clamp(38px, 10vw, 65px);
+  color: #ff3333;
+  font-weight: 1000;
+  text-shadow: 3px 3px #650000;
+}
 
-    button {
-      border: none;
-      border-radius: 30px;
-      padding: 15px 25px;
-      margin-top: 15px;
-      background: #ffdf45;
-      color: #24133d;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+p {
+  font-size: 19px;
+  line-height: 1.5;
+}
 
-    #message {
-      display: none;
-      margin-top: 20px;
-    }
-  </style>
+button {
+  padding: 15px 25px;
+  border: 0;
+  border-radius: 40px;
+  color: white;
+  background: #ed2020;
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff5555;
+  transform: scale(1.05);
+}
+
+#extra {
+  display: none;
+  font-size: 27px;
+  color: #ffe66d;
+  font-weight: bold;
+  margin-top: 18px;
+}
+
+.particle {
+  position: fixed;
+  top: -40px;
+  font-size: 30px;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes bounce {
+  from { transform: rotate(-8deg) scale(.95); }
+  to { transform: rotate(8deg) scale(1.08); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(500deg);
+    opacity: 0;
+  }
+}
+</style>
 </head>
 
 <body>
-  <div class="card">
-    <div class="emoji">😈</div>
+<div class="card">
+  <div class="finger">🖕</div>
 
-    <h1>HEY YOU! 😂</h1>
+  <h1>FUCK UFF!</h1>
 
-    <p>Someone has a special message for you!</p>
+  <p>OI HERO! 😂 K SOCHERA LINK KHOLIS?</p>
 
-    <button onclick="showPrank()">
-      CLICK HERE 👀
-    </button>
+  <button onclick="prank()">THICHA TA! 😈</button>
 
-    <div id="message">
-      <h1>YOU GOT PRANKED! 🤣</h1>
-      <p>Hahaha! ullu banaya bada majja aaya! 😂</p>
-      <p>Relax, it's just a joke. ❤️</p>
-      <div class="emoji">🤡</div>
-    </div>
+  <div id="extra">
+    HAHAHA! U GOT ROASTED! 🤣
+    <div>🖕 🖕 🖕</div>
+    <p>JUST A PRANK, BRO! 🔥</p>
   </div>
+</div>
 
-  <script>
-    function showPrank() {
-      document.getElementById("message").style.display = "block";
-    }
-  </script>
+<script>
+function prank() {
+  document.getElementById("extra").style.display = "block";
+
+  for (let i = 0; i < 35; i++) {
+    const item = document.createElement("div");
+    item.className = "particle";
+    item.textContent = ["🖕", "😂", "🔥", "💀"][
+      Math.floor(Math.random() * 4)
+    ];
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(item);
+
+    setTimeout(() => item.remove(), 5000);
+  }
+}
+</script>
 </body>
 </html>
