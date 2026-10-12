@@ -3,187 +3,230 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ffdd59">
-<title>Catch Me If You Can 😂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Special Surprise 🎁</title>
+
 <style>
-*{box-sizing:border-box}
-:root{--pink:#ff4fa3;--purple:#7c3aed;--yellow:#ffe66d}
-body{
- margin:0;min-height:100vh;padding:18px;
- display:flex;justify-content:center;align-items:center;
- font-family:system-ui,Arial,sans-serif;color:#302047;
- background:linear-gradient(135deg,#ffe66d,#ffb7d5,#b8a2ff);
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: radial-gradient(circle at top, #32104d, #090611 65%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  padding: 20px;
 }
-.card{
- width:100%;max-width:490px;padding:25px 20px;
- background:#fffdf8;border:4px solid #fff;
- border-radius:28px;text-align:center;
- box-shadow:0 12px 0 #7c3aed33,0 18px 45px #59318a30;
+
+.card {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  padding: 35px 22px;
+  border: 1px solid #c34bff;
+  border-radius: 25px;
+  background: #130d20eF;
+  box-shadow: 0 0 35px #a020f044;
+  animation: appear 1s ease;
 }
-h1{font-size:clamp(29px,8vw,43px);margin:4px 0;color:#7c3aed}
-p{font-size:17px;line-height:1.5}
-.meme{font-size:clamp(65px,20vw,95px);margin:8px}
-.tag{
- display:inline-block;padding:7px 13px;border-radius:30px;
- background:#fff0f7;color:#d62982;font-weight:800;font-size:13px
+
+.gift {
+  font-size: 85px;
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
 }
-.arena{
- position:relative;width:100%;height:205px;overflow:hidden;
- background:repeating-linear-gradient(45deg,#fff4c9,#fff4c9 15px,#fff9e8 15px,#fff9e8 30px);
- border:3px dashed #ff91bd;border-radius:20px;margin:20px 0 10px;
+
+h1 {
+  font-size: clamp(30px, 8vw, 44px);
+  margin: 18px 0;
 }
-button{
- border:0;border-radius:15px;padding:14px 20px;
- color:white;font-size:17px;font-weight:800;cursor:pointer;
- box-shadow:0 5px 0 #00000018;
- touch-action:manipulation;
+
+.pink {
+  color: #ff64d8;
+  text-shadow: 0 0 15px #ff28bb77;
 }
-#yes{
- position:absolute;left:12%;top:28%;
- background:linear-gradient(120deg,#ff4fa3,#ff765e);
- z-index:2;transition:left .12s,top .12s;
+
+p {
+  color: #ded6e9;
+  font-size: 17px;
+  line-height: 1.6;
 }
-#no{background:#7c3aed;margin-top:5px}
-#start{background:#16a34a;width:100%;margin-top:8px}
-#again{background:#ff4fa3;margin-top:12px}
-#status{
- min-height:48px;padding:12px;border-radius:13px;
- background:#f4edff;font-weight:700;color:#6635a8;
+
+.note {
+  padding: 15px 10px;
+  border-radius: 14px;
+  background: #ffffff0b;
+  border: 1px solid #ffffff12;
+  margin: 25px 0;
 }
-.small{font-size:12px;color:#74677f}
-#win{display:none}
-#win h2{font-size:30px;color:#ec4899}
-button:focus-visible{outline:4px solid #302047;outline-offset:3px}
+
+button {
+  width: 100%;
+  max-width: 310px;
+  padding: 17px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: 0;
+  border-radius: 40px;
+  cursor: pointer;
+  background: linear-gradient(100deg, #ff3158, #a52cff);
+  box-shadow: 0 0 25px #e32aff55;
+  transition: transform .2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.hint {
+  color: #ff75d8;
+  font-size: 14px;
+  margin-top: 22px;
+}
+
+#surprise {
+  display: none;
+}
+
+.finger {
+  font-size: clamp(145px, 42vw, 220px);
+  line-height: 1.15;
+  margin: 10px 0;
+  animation: slam .65s cubic-bezier(.2,1.7,.5,1);
+  filter: drop-shadow(0 0 22px #ff1744);
+}
+
+.roast {
+  color: #ff304c;
+  font-size: clamp(36px, 10vw, 55px);
+  text-shadow: 0 0 20px #ff002f77;
+  font-weight: 1000;
+  animation: shake .5s ease-in-out;
+}
+
+.small {
+  font-size: 15px;
+  color: #cbbbd8;
+}
+
+#again {
+  margin-top: 15px;
+  background: linear-gradient(100deg, #8e21dd, #f32672);
+}
+
+.confetti {
+  position: fixed;
+  top: -35px;
+  z-index: 5;
+  pointer-events: none;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slam {
+  from { transform: scale(0) rotate(-25deg); }
+  to { transform: scale(1) rotate(0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(600deg); opacity: 0; }
+}
 </style>
 </head>
+
 <body>
 <main class="card">
- <div class="tag">THE ULTIMATE TROLL TEST 🤡</div>
- <div class="meme" id="face">😎</div>
- <h1>Catch Me If You Can!</h1>
- <p>Can you click the <b>YES 😂</b> button?<br>
- I bet you can't catch it! 😈</p>
 
- <div class="arena" id="arena">
-  <button id="yes" type="button">YES 😂</button>
- </div>
+  <section id="welcome">
+    <div class="gift">🎁</div>
 
- <div id="status" aria-live="polite">
-  Tap START and try to catch YES!
- </div>
+    <h1>HEY YOU! <span class="pink">😉</span></h1>
 
- <button id="no" type="button">NO 🙄</button>
- <button id="start" type="button">START CHALLENGE 🚀</button>
+    <p>I have something <span class="pink">special</span> for you...</p>
 
- <section id="win">
-  <div class="meme">🏆🤣</div>
-  <h2>YOU CAUGHT IT!</h2>
-  <p>Congratulations! 🎉<br>
-  You have officially wasted your time. 😂</p>
-  <div class="meme">🤡💀🤡</div>
-  <p><b>JUST A TROLL, LEGEND!</b></p>
-  <button id="again" type="button">PLAY AGAIN 🔄</button>
- </section>
+    <div class="note">
+      ✨ A little surprise is waiting for you! ✨
+    </div>
 
- <p class="small">Just a joke ❤️ Browser Back and close controls always work.</p>
+    <button onclick="reveal()">
+      CLICK HERE 👀 →
+    </button>
+
+    <div class="hint">Go on... click it! 💜</div>
+  </section>
+
+  <section id="surprise">
+    <p class="pink">SURPRISE REVEALED! 🎉</p>
+
+    <div class="finger">🖕</div>
+
+    <div class="roast">FUCK Uhhh Santoshi Madarchoooodddddd! 😂</div>
+
+    <p>HAHAHA! YOU REALLY CLICKED IT! 🤣</p>
+
+    <div class="note">
+      Congratulations! 🎖️<br>
+      You just got officially PRANKED!
+    </div>
+
+    <p class="small">Relax bro, it's just a joke. ❤️</p>
+
+    <button id="again" onclick="resetPrank()">
+      SEE THE SURPRISE AGAIN 😈
+    </button>
+  </section>
+
 </main>
 
 <script>
-const arena = document.getElementById("arena");
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
-const start = document.getElementById("start");
-const again = document.getElementById("again");
-const statusBox = document.getElementById("status");
-const face = document.getElementById("face");
-const win = document.getElementById("win");
+function reveal() {
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("surprise").style.display = "block";
 
-let active = false;
-let caught = false;
-let attempts = 0;
-let noCount = 0;
+  for (let i = 0; i < 45; i++) {
+    const item = document.createElement("div");
+    item.className = "confetti";
+    item.textContent = ["😂", "💜", "✨", "🤣", "🎉"][
+      Math.floor(Math.random() * 5)
+    ];
 
-const jokes = [
- "Too slow! 😂 Try again!",
- "HAHA! Missed me! 🤣",
- "Your finger needs an update! 📱",
- "Almost! ...Actually, not even close. 💀",
- "This button has Olympic-level skills! 🏃",
- "Bro is fighting a button! 😭"
-];
+    item.style.left = Math.random() * 100 + "vw";
+    item.style.animationDuration = (2 + Math.random() * 3) + "s";
+    item.style.fontSize = (18 + Math.random() * 20) + "px";
 
-function moveButton(){
- if(!active || caught) return;
-
- const maxX = Math.max(0, arena.clientWidth - yes.offsetWidth - 8);
- const maxY = Math.max(0, arena.clientHeight - yes.offsetHeight - 8);
-
- yes.style.left = (4 + Math.random() * maxX) + "px";
- yes.style.top = (4 + Math.random() * maxY) + "px";
-
- attempts++;
- statusBox.textContent = jokes[Math.floor(Math.random()*jokes.length)];
- face.textContent = ["😈","😂","🏃","🤪","💀"][Math.floor(Math.random()*5)];
+    document.body.appendChild(item);
+    setTimeout(() => item.remove(), 5000);
+  }
 }
 
-function begin(){
- active = true;
- caught = false;
- attempts = 0;
- noCount = 0;
- win.style.display = "none";
- yes.style.display = "block";
- no.style.display = "inline-block";
- yes.textContent = "YES 😂";
- yes.style.left = "12%";
- yes.style.top = "28%";
- start.textContent = "CHALLENGE RUNNING 🔥";
- statusBox.textContent = "Catch YES! It won't be easy! 😈";
- face.textContent = "😎";
-}
-
-yes.addEventListener("pointerenter", moveButton);
-yes.addEventListener("pointerdown", function(e){
- if(!active || caught) return;
- e.preventDefault();
- moveButton();
-});
-yes.addEventListener("click", function(){
- if(!active || caught) return;
- caught = true;
- active = false;
- yes.style.display = "none";
- no.style.display = "none";
- win.style.display = "block";
- statusBox.textContent = "IMPOSSIBLE... BUT YOU DID IT! 🎉";
- face.textContent = "🤯";
- start.textContent = "CHALLENGE COMPLETE ✅";
- win.scrollIntoView({behavior:"smooth",block:"nearest"});
-});
-
-no.addEventListener("click", function(){
- if(!active){
-  statusBox.textContent = "First press START, brave warrior! 😂";
-  return;
- }
- noCount++;
- statusBox.textContent = noCount % 2
-  ? "NO? That's what a button coward would say! 🤣"
-  : "The YES button is laughing at you! 😭";
- face.textContent = noCount % 2 ? "🤨" : "🤣";
-});
-
-start.addEventListener("click", begin);
-again.addEventListener("click", begin);
-
-drawHint();
-function drawHint(){
- yes.title = "Try clicking me!";
+function resetPrank() {
+  document.getElementById("surprise").style.display = "none";
+  document.getElementById("welcome").style.display = "block";
 }
 </script>
 </body>
 </html>
+
 
 
 
