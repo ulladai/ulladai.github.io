@@ -4,252 +4,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10091f">
-<title>Escape If You Can! 🌀</title>
+<meta name="theme-color" content="#ffdd59">
+<title>Catch Me If You Can 😂</title>
 <style>
 *{box-sizing:border-box}
+:root{--pink:#ff4fa3;--purple:#7c3aed;--yellow:#ffe66d}
 body{
- margin:0;min-height:100vh;padding:18px 12px 30px;
- background:radial-gradient(circle at top,#35205c,#10091f 65%);
- color:#fff;font-family:Arial,sans-serif;text-align:center
+ margin:0;min-height:100vh;padding:18px;
+ display:flex;justify-content:center;align-items:center;
+ font-family:system-ui,Arial,sans-serif;color:#302047;
+ background:linear-gradient(135deg,#ffe66d,#ffb7d5,#b8a2ff);
 }
-.wrap{max-width:540px;margin:auto}
-h1{font-size:clamp(29px,7vw,43px);margin:8px 0;color:#e9b5ff}
-.sub{color:#d2c6e8;line-height:1.5}
-.panel{
- background:#1b122b;border:1px solid #8b5cf6;
- border-radius:20px;padding:16px;margin:14px 0;
- box-shadow:0 0 24px #8b5cf633
+.card{
+ width:100%;max-width:490px;padding:25px 20px;
+ background:#fffdf8;border:4px solid #fff;
+ border-radius:28px;text-align:center;
+ box-shadow:0 12px 0 #7c3aed33,0 18px 45px #59318a30;
 }
-.stats{display:flex;justify-content:space-around;gap:8px;font-size:14px}
-#maze{
- display:grid;grid-template-columns:repeat(9,minmax(0,1fr));
- gap:3px;width:100%;max-width:420px;margin:15px auto
+h1{font-size:clamp(29px,8vw,43px);margin:4px 0;color:#7c3aed}
+p{font-size:17px;line-height:1.5}
+.meme{font-size:clamp(65px,20vw,95px);margin:8px}
+.tag{
+ display:inline-block;padding:7px 13px;border-radius:30px;
+ background:#fff0f7;color:#d62982;font-weight:800;font-size:13px
 }
-.cell{
- aspect-ratio:1;border-radius:4px;background:#312347;
- display:flex;align-items:center;justify-content:center;
- font-size:clamp(14px,4.6vw,23px);min-width:0
+.arena{
+ position:relative;width:100%;height:205px;overflow:hidden;
+ background:repeating-linear-gradient(45deg,#fff4c9,#fff4c9 15px,#fff9e8 15px,#fff9e8 30px);
+ border:3px dashed #ff91bd;border-radius:20px;margin:20px 0 10px;
 }
-.wall{background:#7850a8;box-shadow:inset 0 0 5px #c4a3ff}
-.path{background:#241832}
-.player{background:#10b981;color:#061a14}
-.key{background:#facc15;color:#291900}
-.exit{background:#fb7185;color:#310714}
 button{
- border:0;border-radius:12px;padding:13px 16px;
- background:linear-gradient(110deg,#a855f7,#ec4899);
- color:white;font-size:16px;font-weight:bold;cursor:pointer;
- touch-action:manipulation
+ border:0;border-radius:15px;padding:14px 20px;
+ color:white;font-size:17px;font-weight:800;cursor:pointer;
+ box-shadow:0 5px 0 #00000018;
+ touch-action:manipulation;
 }
-button:active{transform:scale(.96)}
-.controls{
- display:grid;grid-template-columns:repeat(3,65px);
- justify-content:center;gap:8px;margin:14px auto
+#yes{
+ position:absolute;left:12%;top:28%;
+ background:linear-gradient(120deg,#ff4fa3,#ff765e);
+ z-index:2;transition:left .12s,top .12s;
 }
-.controls button{padding:12px 0;font-size:23px}
-.controls .blank{visibility:hidden}
-#message{line-height:1.6;min-height:50px;color:#f3d7ff}
-#puzzleBox{display:none}
-input{
- width:100%;max-width:280px;padding:12px;border-radius:10px;
- border:1px solid #a78bfa;background:#10091f;color:white;
- font-size:16px;margin:8px 0
+#no{background:#7c3aed;margin-top:5px}
+#start{background:#16a34a;width:100%;margin-top:8px}
+#again{background:#ff4fa3;margin-top:12px}
+#status{
+ min-height:48px;padding:12px;border-radius:13px;
+ background:#f4edff;font-weight:700;color:#6635a8;
 }
-.secondary{background:#38264d}
+.small{font-size:12px;color:#74677f}
 #win{display:none}
-.big{font-size:clamp(65px,20vw,100px);margin:8px}
-a{color:#f0abfc}
-.small{font-size:12px;color:#bcaed0}
+#win h2{font-size:30px;color:#ec4899}
+button:focus-visible{outline:4px solid #302047;outline-offset:3px}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>🌀 ESCAPE IF YOU CAN!</h1>
-  <p class="sub">Find the key. Solve the riddle. Reach the exit.<br>
-  Think you can beat this tiny maze? 😈</p>
+<main class="card">
+ <div class="tag">THE ULTIMATE TROLL TEST 🤡</div>
+ <div class="meme" id="face">😎</div>
+ <h1>Catch Me If You Can!</h1>
+ <p>Can you click the <b>YES 😂</b> button?<br>
+ I bet you can't catch it! 😈</p>
 
-  <div class="panel">
-    <div class="stats">
-      <span>🗝️ Key: <b id="keyStatus">Missing</b></span>
-      <span>👣 Moves: <b id="moves">0</b></span>
-    </div>
+ <div class="arena" id="arena">
+  <button id="yes" type="button">YES 😂</button>
+ </div>
 
-    <div id="maze" aria-label="Maze game board"></div>
+ <div id="status" aria-live="polite">
+  Tap START and try to catch YES!
+ </div>
 
-    <div class="controls" aria-label="Movement controls">
-      <span class="blank">.</span>
-      <button class="secondary" onclick="move(0,-1)" aria-label="Move up">⬆️</button>
-      <span class="blank">.</span>
-      <button class="secondary" onclick="move(-1,0)" aria-label="Move left">⬅️</button>
-      <button class="secondary" onclick="move(0,1)" aria-label="Move down">⬇️</button>
-      <button class="secondary" onclick="move(1,0)" aria-label="Move right">➡️</button>
-    </div>
+ <button id="no" type="button">NO 🙄</button>
+ <button id="start" type="button">START CHALLENGE 🚀</button>
 
-    <div id="message" aria-live="polite">Your mission: find the golden key! 🔑</div>
-    <button class="secondary" onclick="resetGame()">🔄 Restart maze</button>
-  </div>
+ <section id="win">
+  <div class="meme">🏆🤣</div>
+  <h2>YOU CAUGHT IT!</h2>
+  <p>Congratulations! 🎉<br>
+  You have officially wasted your time. 😂</p>
+  <div class="meme">🤡💀🤡</div>
+  <p><b>JUST A TROLL, LEGEND!</b></p>
+  <button id="again" type="button">PLAY AGAIN 🔄</button>
+ </section>
 
-  <div class="panel" id="puzzleBox">
-    <h2>🧠 One last riddle!</h2>
-    <p>I have keys but no locks. I have space but no room. What am I?</p>
-    <input id="answer" placeholder="Type your answer..." autocomplete="off">
-    <br>
-    <button onclick="checkAnswer()">Unlock the exit</button>
-    <p class="small">Hint: You use one to type on a computer.</p>
-  </div>
-
-  <div class="panel" id="win">
-    <div class="big">😂🎉</div>
-    <h1>YOU ESCAPED!</h1>
-    <p>You solved the maze... but walked straight into the real trap!</p>
-    <div class="big">🤡</div>
-    <h2 style="color:#f9a8d4">JUST A PRANK! 🤣</h2>
-    <p>Congratulations, maze champion. Go roast your friends now! 😎</p>
-    <button onclick="resetGame()">Play again</button>
-  </div>
-
-  <p class="small">Harmless fun only. Your browser Back and close controls always work.</p>
-</div>
+ <p class="small">Just a joke ❤️ Browser Back and close controls always work.</p>
+</main>
 
 <script>
-const layout = [
- "#########",
- "#...#...#",
- "#.#.#.#.#",
- "#.#...#.#",
- "#.###.#.#",
- "#...#...#",
- "###.#.###",
- "#.......#",
- "#########"
+const arena = document.getElementById("arena");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const start = document.getElementById("start");
+const again = document.getElementById("again");
+const statusBox = document.getElementById("status");
+const face = document.getElementById("face");
+const win = document.getElementById("win");
+
+let active = false;
+let caught = false;
+let attempts = 0;
+let noCount = 0;
+
+const jokes = [
+ "Too slow! 😂 Try again!",
+ "HAHA! Missed me! 🤣",
+ "Your finger needs an update! 📱",
+ "Almost! ...Actually, not even close. 💀",
+ "This button has Olympic-level skills! 🏃",
+ "Bro is fighting a button! 😭"
 ];
 
-const start = {x:1,y:1};
-const keySpot = {x:7,y:7};
-const exitSpot = {x:7,y:1};
+function moveButton(){
+ if(!active || caught) return;
 
-let player = {...start};
-let hasKey = false;
-let moves = 0;
-let puzzleSolved = false;
-let finished = false;
+ const maxX = Math.max(0, arena.clientWidth - yes.offsetWidth - 8);
+ const maxY = Math.max(0, arena.clientHeight - yes.offsetHeight - 8);
 
-const maze = document.getElementById("maze");
-const message = document.getElementById("message");
+ yes.style.left = (4 + Math.random() * maxX) + "px";
+ yes.style.top = (4 + Math.random() * maxY) + "px";
 
-function isWall(x,y){
- return !layout[y] || layout[y][x] !== ".";
+ attempts++;
+ statusBox.textContent = jokes[Math.floor(Math.random()*jokes.length)];
+ face.textContent = ["😈","😂","🏃","🤪","💀"][Math.floor(Math.random()*5)];
 }
 
-function draw(){
- maze.innerHTML = "";
- for(let y=0;y<layout.length;y++){
-  for(let x=0;x<layout[y].length;x++){
-   const cell = document.createElement("div");
-   cell.className = "cell";
-   if(layout[y][x] === "#"){
-    cell.classList.add("wall");
-    cell.textContent = "▪";
-   }else{
-    cell.classList.add("path");
-   }
-   if(x===keySpot.x && y===keySpot.y && !hasKey){
-    cell.classList.add("key"); cell.textContent="🔑";
-   }
-   if(x===exitSpot.x && y===exitSpot.y){
-    cell.classList.add("exit");
-    cell.textContent = puzzleSolved ? "🚪" : "🔒";
-   }
-   if(x===player.x && y===player.y){
-    cell.className="cell player";cell.textContent="🧑";
-   }
-   maze.appendChild(cell);
-  }
- }
- document.getElementById("keyStatus").textContent =
-  hasKey ? "Found! ✅" : "Missing";
- document.getElementById("moves").textContent = moves;
+function begin(){
+ active = true;
+ caught = false;
+ attempts = 0;
+ noCount = 0;
+ win.style.display = "none";
+ yes.style.display = "block";
+ no.style.display = "inline-block";
+ yes.textContent = "YES 😂";
+ yes.style.left = "12%";
+ yes.style.top = "28%";
+ start.textContent = "CHALLENGE RUNNING 🔥";
+ statusBox.textContent = "Catch YES! It won't be easy! 😈";
+ face.textContent = "😎";
 }
 
-function move(dx,dy){
- if(finished) return;
- const nx=player.x+dx, ny=player.y+dy;
- if(isWall(nx,ny)){
-  message.textContent="Bonk! 🤣 Wall ma thokkyo. Arko bato try gara!";
+yes.addEventListener("pointerenter", moveButton);
+yes.addEventListener("pointerdown", function(e){
+ if(!active || caught) return;
+ e.preventDefault();
+ moveButton();
+});
+yes.addEventListener("click", function(){
+ if(!active || caught) return;
+ caught = true;
+ active = false;
+ yes.style.display = "none";
+ no.style.display = "none";
+ win.style.display = "block";
+ statusBox.textContent = "IMPOSSIBLE... BUT YOU DID IT! 🎉";
+ face.textContent = "🤯";
+ start.textContent = "CHALLENGE COMPLETE ✅";
+ win.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+
+no.addEventListener("click", function(){
+ if(!active){
+  statusBox.textContent = "First press START, brave warrior! 😂";
   return;
  }
- player={x:nx,y:ny};
- moves++;
-
- if(player.x===keySpot.x && player.y===keySpot.y && !hasKey){
-  hasKey=true;
-  message.textContent="Golden key found! 🔑 Aba exit khoja!";
- }else if(player.x===exitSpot.x && player.y===exitSpot.y){
-  if(!hasKey){
-   message.textContent="Exit locked! Pahila golden key khoja. 🔐";
-  }else if(!puzzleSolved){
-   document.getElementById("puzzleBox").style.display="block";
-   message.textContent="Key milisakyo! Aba riddle solve gara. 🧠";
-  }else{
-   winGame();
-  }
- }else{
-  message.textContent="Keep going, explorer! 🌀";
- }
- draw();
-}
-
-function checkAnswer(){
- const answer=document.getElementById("answer").value.trim().toLowerCase();
- if(["keyboard","a keyboard","computer keyboard"].includes(answer)){
-  puzzleSolved=true;
-  document.getElementById("puzzleBox").style.display="none";
-  message.textContent="Correct! 🎉 Exit unlocked. 🚪 Exit ma jau!";
-  draw();
- }else{
-  message.textContent="Not quite! 😂 Try again. Hint: QWERTY...";
- }
-}
-
-function winGame(){
- finished=true;
- document.getElementById("win").style.display="block";
- document.getElementById("puzzleBox").style.display="none";
- message.textContent="Maze complete!";
- document.getElementById("win").scrollIntoView({behavior:"smooth",block:"center"});
-}
-
-function resetGame(){
- player={...start};
- hasKey=false;
- moves=0;
- puzzleSolved=false;
- finished=false;
- document.getElementById("answer").value="";
- document.getElementById("puzzleBox").style.display="none";
- document.getElementById("win").style.display="none";
- message.textContent="Your mission: find the golden key! 🔑";
- draw();
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-document.addEventListener("keydown",function(e){
- const keys={
-  ArrowUp:[0,-1],w:[0,-1],
-  ArrowDown:[0,1],s:[0,1],
-  ArrowLeft:[-1,0],a:[-1,0],
-  ArrowRight:[1,0],d:[1,0]
- };
- const k=e.key.length===1?e.key.toLowerCase():e.key;
- if(keys[k] && !["INPUT"].includes(document.activeElement.tagName)){
-  e.preventDefault();move(...keys[k]);
- }
+ noCount++;
+ statusBox.textContent = noCount % 2
+  ? "NO? That's what a button coward would say! 🤣"
+  : "The YES button is laughing at you! 😭";
+ face.textContent = noCount % 2 ? "🤨" : "🤣";
 });
-draw();
+
+start.addEventListener("click", begin);
+again.addEventListener("click", begin);
+
+drawHint();
+function drawHint(){
+ yes.title = "Try clicking me!";
+}
 </script>
 </body>
 </html>
+
 
 
 
