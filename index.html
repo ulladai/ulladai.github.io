@@ -3,227 +3,254 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Special Surprise 🎁</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10091f">
+<title>Escape If You Can! 🌀</title>
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: white;
-  background: radial-gradient(circle at top, #32104d, #090611 65%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-x: hidden;
-  padding: 20px;
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;padding:18px 12px 30px;
+ background:radial-gradient(circle at top,#35205c,#10091f 65%);
+ color:#fff;font-family:Arial,sans-serif;text-align:center
 }
-
-.card {
-  width: 100%;
-  max-width: 480px;
-  text-align: center;
-  padding: 35px 22px;
-  border: 1px solid #c34bff;
-  border-radius: 25px;
-  background: #130d20eF;
-  box-shadow: 0 0 35px #a020f044;
-  animation: appear 1s ease;
+.wrap{max-width:540px;margin:auto}
+h1{font-size:clamp(29px,7vw,43px);margin:8px 0;color:#e9b5ff}
+.sub{color:#d2c6e8;line-height:1.5}
+.panel{
+ background:#1b122b;border:1px solid #8b5cf6;
+ border-radius:20px;padding:16px;margin:14px 0;
+ box-shadow:0 0 24px #8b5cf633
 }
-
-.gift {
-  font-size: 85px;
-  display: inline-block;
-  animation: float 2s ease-in-out infinite;
+.stats{display:flex;justify-content:space-around;gap:8px;font-size:14px}
+#maze{
+ display:grid;grid-template-columns:repeat(9,minmax(0,1fr));
+ gap:3px;width:100%;max-width:420px;margin:15px auto
 }
-
-h1 {
-  font-size: clamp(30px, 8vw, 44px);
-  margin: 18px 0;
+.cell{
+ aspect-ratio:1;border-radius:4px;background:#312347;
+ display:flex;align-items:center;justify-content:center;
+ font-size:clamp(14px,4.6vw,23px);min-width:0
 }
-
-.pink {
-  color: #ff64d8;
-  text-shadow: 0 0 15px #ff28bb77;
+.wall{background:#7850a8;box-shadow:inset 0 0 5px #c4a3ff}
+.path{background:#241832}
+.player{background:#10b981;color:#061a14}
+.key{background:#facc15;color:#291900}
+.exit{background:#fb7185;color:#310714}
+button{
+ border:0;border-radius:12px;padding:13px 16px;
+ background:linear-gradient(110deg,#a855f7,#ec4899);
+ color:white;font-size:16px;font-weight:bold;cursor:pointer;
+ touch-action:manipulation
 }
-
-p {
-  color: #ded6e9;
-  font-size: 17px;
-  line-height: 1.6;
+button:active{transform:scale(.96)}
+.controls{
+ display:grid;grid-template-columns:repeat(3,65px);
+ justify-content:center;gap:8px;margin:14px auto
 }
-
-.note {
-  padding: 15px 10px;
-  border-radius: 14px;
-  background: #ffffff0b;
-  border: 1px solid #ffffff12;
-  margin: 25px 0;
+.controls button{padding:12px 0;font-size:23px}
+.controls .blank{visibility:hidden}
+#message{line-height:1.6;min-height:50px;color:#f3d7ff}
+#puzzleBox{display:none}
+input{
+ width:100%;max-width:280px;padding:12px;border-radius:10px;
+ border:1px solid #a78bfa;background:#10091f;color:white;
+ font-size:16px;margin:8px 0
 }
-
-button {
-  width: 100%;
-  max-width: 310px;
-  padding: 17px;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-  border: 0;
-  border-radius: 40px;
-  cursor: pointer;
-  background: linear-gradient(100deg, #ff3158, #a52cff);
-  box-shadow: 0 0 25px #e32aff55;
-  transition: transform .2s;
-}
-
-button:hover {
-  transform: scale(1.05);
-}
-
-.hint {
-  color: #ff75d8;
-  font-size: 14px;
-  margin-top: 22px;
-}
-
-#surprise {
-  display: none;
-}
-
-.finger {
-  font-size: clamp(145px, 42vw, 220px);
-  line-height: 1.15;
-  margin: 10px 0;
-  animation: slam .65s cubic-bezier(.2,1.7,.5,1);
-  filter: drop-shadow(0 0 22px #ff1744);
-}
-
-.roast {
-  color: #ff304c;
-  font-size: clamp(36px, 10vw, 55px);
-  text-shadow: 0 0 20px #ff002f77;
-  font-weight: 1000;
-  animation: shake .5s ease-in-out;
-}
-
-.small {
-  font-size: 15px;
-  color: #cbbbd8;
-}
-
-#again {
-  margin-top: 15px;
-  background: linear-gradient(100deg, #8e21dd, #f32672);
-}
-
-.confetti {
-  position: fixed;
-  top: -35px;
-  z-index: 5;
-  pointer-events: none;
-  animation: fall 3s linear forwards;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(-12px) rotate(5deg); }
-}
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slam {
-  from { transform: scale(0) rotate(-25deg); }
-  to { transform: scale(1) rotate(0); }
-}
-
-@keyframes shake {
-  0%, 100% { transform: rotate(0); }
-  25% { transform: rotate(-3deg); }
-  75% { transform: rotate(3deg); }
-}
-
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(600deg); opacity: 0; }
-}
+.secondary{background:#38264d}
+#win{display:none}
+.big{font-size:clamp(65px,20vw,100px);margin:8px}
+a{color:#f0abfc}
+.small{font-size:12px;color:#bcaed0}
 </style>
 </head>
-
 <body>
-<main class="card">
+<div class="wrap">
+  <h1>🌀 ESCAPE IF YOU CAN!</h1>
+  <p class="sub">Find the key. Solve the riddle. Reach the exit.<br>
+  Think you can beat this tiny maze? 😈</p>
 
-  <section id="welcome">
-    <div class="gift">🎁</div>
-
-    <h1>HEY YOU! <span class="pink">😉</span></h1>
-
-    <p>I have something <span class="pink">special</span> for you...</p>
-
-    <div class="note">
-      ✨ A little surprise is waiting for you! ✨
+  <div class="panel">
+    <div class="stats">
+      <span>🗝️ Key: <b id="keyStatus">Missing</b></span>
+      <span>👣 Moves: <b id="moves">0</b></span>
     </div>
 
-    <button onclick="reveal()">
-      CLICK HERE 👀 →
-    </button>
+    <div id="maze" aria-label="Maze game board"></div>
 
-    <div class="hint">Go on... click it! 💜</div>
-  </section>
-
-  <section id="surprise">
-    <p class="pink">SURPRISE REVEALED! 🎉</p>
-
-    <div class="finger">🖕</div>
-
-    <div class="roast">FUCK Uhhh Santoshi madarchood....😂</div>
-
-    <p>HAHAHA! YOU REALLY CLICKED IT! 🤣</p>
-
-    <div class="note">
-      Congratulations! 🎖️<br>
-      You just got officially PRANKED!
+    <div class="controls" aria-label="Movement controls">
+      <span class="blank">.</span>
+      <button class="secondary" onclick="move(0,-1)" aria-label="Move up">⬆️</button>
+      <span class="blank">.</span>
+      <button class="secondary" onclick="move(-1,0)" aria-label="Move left">⬅️</button>
+      <button class="secondary" onclick="move(0,1)" aria-label="Move down">⬇️</button>
+      <button class="secondary" onclick="move(1,0)" aria-label="Move right">➡️</button>
     </div>
 
-    <p class="small">Relax bro, it's just a joke. ❤️</p>
+    <div id="message" aria-live="polite">Your mission: find the golden key! 🔑</div>
+    <button class="secondary" onclick="resetGame()">🔄 Restart maze</button>
+  </div>
 
-    <button id="again" onclick="resetPrank()">
-      SEE THE SURPRISE AGAIN 😈
-    </button>
-  </section>
+  <div class="panel" id="puzzleBox">
+    <h2>🧠 One last riddle!</h2>
+    <p>I have keys but no locks. I have space but no room. What am I?</p>
+    <input id="answer" placeholder="Type your answer..." autocomplete="off">
+    <br>
+    <button onclick="checkAnswer()">Unlock the exit</button>
+    <p class="small">Hint: You use one to type on a computer.</p>
+  </div>
 
-</main>
+  <div class="panel" id="win">
+    <div class="big">😂🎉</div>
+    <h1>YOU ESCAPED!</h1>
+    <p>You solved the maze... but walked straight into the real trap!</p>
+    <div class="big">🤡</div>
+    <h2 style="color:#f9a8d4">JUST A PRANK! 🤣</h2>
+    <p>Congratulations, maze champion. Go roast your friends now! 😎</p>
+    <button onclick="resetGame()">Play again</button>
+  </div>
+
+  <p class="small">Harmless fun only. Your browser Back and close controls always work.</p>
+</div>
 
 <script>
-function reveal() {
-  document.getElementById("welcome").style.display = "none";
-  document.getElementById("surprise").style.display = "block";
+const layout = [
+ "#########",
+ "#...#...#",
+ "#.#.#.#.#",
+ "#.#...#.#",
+ "#.###.#.#",
+ "#...#...#",
+ "###.#.###",
+ "#.......#",
+ "#########"
+];
 
-  for (let i = 0; i < 45; i++) {
-    const item = document.createElement("div");
-    item.className = "confetti";
-    item.textContent = ["😂", "💜", "✨", "🤣", "🎉"][
-      Math.floor(Math.random() * 5)
-    ];
+const start = {x:1,y:1};
+const keySpot = {x:7,y:7};
+const exitSpot = {x:7,y:1};
 
-    item.style.left = Math.random() * 100 + "vw";
-    item.style.animationDuration = (2 + Math.random() * 3) + "s";
-    item.style.fontSize = (18 + Math.random() * 20) + "px";
+let player = {...start};
+let hasKey = false;
+let moves = 0;
+let puzzleSolved = false;
+let finished = false;
 
-    document.body.appendChild(item);
-    setTimeout(() => item.remove(), 5000);
+const maze = document.getElementById("maze");
+const message = document.getElementById("message");
+
+function isWall(x,y){
+ return !layout[y] || layout[y][x] !== ".";
+}
+
+function draw(){
+ maze.innerHTML = "";
+ for(let y=0;y<layout.length;y++){
+  for(let x=0;x<layout[y].length;x++){
+   const cell = document.createElement("div");
+   cell.className = "cell";
+   if(layout[y][x] === "#"){
+    cell.classList.add("wall");
+    cell.textContent = "▪";
+   }else{
+    cell.classList.add("path");
+   }
+   if(x===keySpot.x && y===keySpot.y && !hasKey){
+    cell.classList.add("key"); cell.textContent="🔑";
+   }
+   if(x===exitSpot.x && y===exitSpot.y){
+    cell.classList.add("exit");
+    cell.textContent = puzzleSolved ? "🚪" : "🔒";
+   }
+   if(x===player.x && y===player.y){
+    cell.className="cell player";cell.textContent="🧑";
+   }
+   maze.appendChild(cell);
   }
+ }
+ document.getElementById("keyStatus").textContent =
+  hasKey ? "Found! ✅" : "Missing";
+ document.getElementById("moves").textContent = moves;
 }
 
-function resetPrank() {
-  document.getElementById("surprise").style.display = "none";
-  document.getElementById("welcome").style.display = "block";
+function move(dx,dy){
+ if(finished) return;
+ const nx=player.x+dx, ny=player.y+dy;
+ if(isWall(nx,ny)){
+  message.textContent="Bonk! 🤣 Wall ma thokkyo. Arko bato try gara!";
+  return;
+ }
+ player={x:nx,y:ny};
+ moves++;
+
+ if(player.x===keySpot.x && player.y===keySpot.y && !hasKey){
+  hasKey=true;
+  message.textContent="Golden key found! 🔑 Aba exit khoja!";
+ }else if(player.x===exitSpot.x && player.y===exitSpot.y){
+  if(!hasKey){
+   message.textContent="Exit locked! Pahila golden key khoja. 🔐";
+  }else if(!puzzleSolved){
+   document.getElementById("puzzleBox").style.display="block";
+   message.textContent="Key milisakyo! Aba riddle solve gara. 🧠";
+  }else{
+   winGame();
+  }
+ }else{
+  message.textContent="Keep going, explorer! 🌀";
+ }
+ draw();
 }
+
+function checkAnswer(){
+ const answer=document.getElementById("answer").value.trim().toLowerCase();
+ if(["keyboard","a keyboard","computer keyboard"].includes(answer)){
+  puzzleSolved=true;
+  document.getElementById("puzzleBox").style.display="none";
+  message.textContent="Correct! 🎉 Exit unlocked. 🚪 Exit ma jau!";
+  draw();
+ }else{
+  message.textContent="Not quite! 😂 Try again. Hint: QWERTY...";
+ }
+}
+
+function winGame(){
+ finished=true;
+ document.getElementById("win").style.display="block";
+ document.getElementById("puzzleBox").style.display="none";
+ message.textContent="Maze complete!";
+ document.getElementById("win").scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+function resetGame(){
+ player={...start};
+ hasKey=false;
+ moves=0;
+ puzzleSolved=false;
+ finished=false;
+ document.getElementById("answer").value="";
+ document.getElementById("puzzleBox").style.display="none";
+ document.getElementById("win").style.display="none";
+ message.textContent="Your mission: find the golden key! 🔑";
+ draw();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.addEventListener("keydown",function(e){
+ const keys={
+  ArrowUp:[0,-1],w:[0,-1],
+  ArrowDown:[0,1],s:[0,1],
+  ArrowLeft:[-1,0],a:[-1,0],
+  ArrowRight:[1,0],d:[1,0]
+ };
+ const k=e.key.length===1?e.key.toLowerCase():e.key;
+ if(keys[k] && !["INPUT"].includes(document.activeElement.tagName)){
+  e.preventDefault();move(...keys[k]);
+ }
+});
+draw();
 </script>
 </body>
 </html>
+
+
+
 
